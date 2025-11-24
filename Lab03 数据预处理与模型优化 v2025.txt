@@ -1,0 +1,18 @@
+【教材】
+[中文版] ：Python机器学习--基于PyTorch和Scikit-Learn
+[英文版] ：Machine Learning with Pytorch and Scikit-Learn
+[程序代码]：https://github.com/rasbt/machine-learning-book
+[外部资料]：https://alanhou.org/machine-learning-pytorch-scikit-learn/
+https://www.cnblogs.com/apachecn/p/18318421
+
+【参考书2】
+Mastering Machine Learning with Scikit-Learn (2nd Ed.)
+
+操作内容：
+3.1 数据准备（教材1 第4章）
+3.2 模型评估和超参数调优（教材1 第6章）
+
+
+
+
+

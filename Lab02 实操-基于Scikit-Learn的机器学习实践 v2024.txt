@@ -1,0 +1,22 @@
+【教材】
+ [中文版] ：Python机器学习--基于PyTorch和Scikit-Learn
+ [英文版] ：Machine Learning with Pytorch and Scikit-Learn
+ [程序代码]：https://github.com/rasbt/machine-learning-book
+[外部资料]：https://alanhou.org/machine-learning-pytorch-scikit-learn/
+https://www.cnblogs.com/apachecn/p/18318421
+
+【参考书2】
+Mastering Machine Learning with Scikit-Learn (2nd Ed.)
+
+Lab2 操作内容：教材第3章
+2.1 sk-learn 感知器
+2.2 逻辑回归和正则化
+2.3 支持向量机和核方法
+2.4 决策树
+2.5 KNN
+
+
+Lab3 数据处理与模型性能评估（第4，6章）
+
+
+
