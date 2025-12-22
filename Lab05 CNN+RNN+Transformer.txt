@@ -1,0 +1,11 @@
+【教材】
+[中文版] ：Python机器学习--基于PyTorch和Scikit-Learn
+[英文版] ：Machine Learning with Pytorch and Scikit-Learn
+[程序代码]：https://github.com/rasbt/machine-learning-book
+[外部资料]：https://alanhou.org/machine-learning-pytorch-scikit-learn/
+https://www.cnblogs.com/apachecn/p/18318421
+
+操作内容：
+5.1 CNN图像分类（教材1 第14章）
+5.2 RNN序列建模 （教材1 第15章）
+5.3 Transformer（教材1 第16.1 - 16.3）

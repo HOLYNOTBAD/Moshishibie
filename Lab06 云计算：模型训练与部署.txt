@@ -1,0 +1,5 @@
+1. 基于华为云的DeepSeek快速安装部署
+https://lab.huaweicloud.com/experiment-detail_3992
+
+2. 基于ModelArts的工业质检：Yolov8训练与部署
+https://www.huaweicloud.com/
