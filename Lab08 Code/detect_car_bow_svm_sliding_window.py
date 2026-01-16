@@ -7,10 +7,10 @@ import os
 if 'non_max_suppression_fast' not in globals():
     from non_max_suppression import non_max_suppression_fast
 
-if not os.path.isdir('CarData'):
+if not os.path.isdir(os.path.join(os.path.dirname(__file__), 'data', 'CarData')):
     print('CarData folder not found. Please download and unzip '
           'https://github.com/gcr/arc-evaluator/raw/master/CarData.tar.gz '
-          'into the same folder as this script.')
+          'into the data folder in the same directory as this script.')
     exit(1)
 
 BOW_NUM_TRAINING_SAMPLES_PER_CLASS = 10
@@ -31,8 +31,9 @@ bow_kmeans_trainer = cv2.BOWKMeansTrainer(BOW_NUM_CLUSTERS)
 bow_extractor = cv2.BOWImgDescriptorExtractor(sift, flann)
 
 def get_pos_and_neg_paths(i):
-    pos_path = 'CarData/TrainImages/pos-%d.pgm' % (i+1)
-    neg_path = 'CarData/TrainImages/neg-%d.pgm' % (i+1)
+    script_dir = os.path.dirname(__file__)
+    pos_path = os.path.join(script_dir, 'data', 'CarData/TrainImages/pos-%d.pgm' % (i+1))
+    neg_path = os.path.join(script_dir, 'data', 'CarData/TrainImages/neg-%d.pgm' % (i+1))
     return pos_path, neg_path
 
 def add_sample(path):
@@ -91,20 +92,44 @@ def pyramid(img, scale_factor=1.05, min_size=(100, 40),
 def sliding_window(img, step=20, window_size=(100, 40)):
     img_h, img_w = img.shape
     window_w, window_h = window_size
-    for y in range(0, img_w, step):
-        for x in range(0, img_h, step):
+    for y in range(0, img_h, step):
+        for x in range(0, img_w, step):
             roi = img[y:y+window_h, x:x+window_w]
             roi_h, roi_w = roi.shape
             if roi_w == window_w and roi_h == window_h:
                 yield (x, y, roi)
 
-for test_img_path in ['CarData/TestImages/test-0.pgm',
-                      'CarData/TestImages/test-1.pgm',
-                      '../images/car.jpg',
-                      '../images/haying.jpg',
-                      '../images/statue.jpg',
-                      '../images/woodcutters.jpg']:
+# Set up paths
+script_dir = os.path.dirname(__file__)
+output_dir = os.path.join(script_dir, 'result')
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
+test_files = [
+    os.path.join(script_dir, 'data', 'CarData/TestImages/test-0.pgm'),
+    os.path.join(script_dir, 'data', 'CarData/TestImages/test-1.pgm'),
+    os.path.join(script_dir, 'data', 'car.jpg'),
+    os.path.join(script_dir, 'data', 'haying.jpg'),
+    os.path.join(script_dir, 'data', 'statue.jpg'),
+    os.path.join(script_dir, 'data', 'woodcutters.jpg')
+]
+
+for test_img_path in test_files:
+    if not os.path.exists(test_img_path):
+        # Try checking relative to script dir if not in data
+        filename = os.path.basename(test_img_path)
+        fallback_path = os.path.join(script_dir, '../images', filename)
+        if os.path.exists(fallback_path):
+            test_img_path = fallback_path
+        else:
+            print(f"Warning: File not found {test_img_path}, skipping.")
+            continue
+            
     img = cv2.imread(test_img_path)
+    if img is None:
+        print(f"Failed to read {test_img_path}")
+        continue
+        
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     pos_rects = []
     for resized in pyramid(gray_img):
@@ -133,5 +158,12 @@ for test_img_path in ['CarData/TestImages/test-0.pgm',
         text = '%.2f' % score
         cv2.putText(img, text, (int(x0), int(y0) - 20),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
-    cv2.imshow(test_img_path, img)
+    
+    # Save result
+    filename = os.path.basename(test_img_path)
+    save_path = os.path.join(output_dir, f'svm_sliding_result_{filename}.png')
+    cv2.imwrite(save_path, img)
+    # cv2.imshow(test_img_path, img)
+
+print("Processing complete. Results saved to 'result' folder.")
 cv2.waitKey(0)

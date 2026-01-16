@@ -1,0 +1,12 @@
+【教材】
+[中文版] ：Python机器学习--基于PyTorch和Scikit-Learn
+[英文版] ：Machine Learning with Pytorch and Scikit-Learn
+[程序代码]：https://github.com/rasbt/machine-learning-book
+[外部资料]：https://alanhou.org/machine-learning-pytorch-scikit-learn/
+https://www.cnblogs.com/apachecn/p/18318421
+
+操作内容：
+1.1 人工神经网络（教材1 第11章）
+1.2 安装（CUDA和）Pytorch
+https://blog.csdn.net/qlkaicx/article/details/134577555
+1.3 用Pytorch进行并行计算（教材1 第12-13章）

@@ -1,0 +1,18 @@
+Perceptron.py：2.2.1 面向对象的感知机API
+Perceptron_train.py：2.2.2 对鸢尾花数据集训练感知机模型 
+Adaline.py：2.2.3 感知机收敛性分析--Adaline算法
+AdalineSGD.py：2.2.4 随机梯度下降--AdalineSGD算法
+
+Perceptron_train.py：2.2.2 对鸢尾花数据集训练感知机模型 
+setosa和versicolor鸢尾花的花萼长度及花瓣长度散点图.png
+错误归类数对迭代次数的折线图.png
+感知机决策区域图.png
+
+Adaline.py：2.2.3 感知机收敛性分析--Adaline算法
+不同学习率下Adaline的损失函数变化图.png
+Adaline梯度下降决策区域图.png
+Adaline梯度下降损失函数变化图.png
+
+AdalineSGD.py：2.2.4 随机梯度下降--AdalineSGD算法
+Adaline梯度下降决策区域图.png
+Adaline随机梯度下降损失函数变化图.png
